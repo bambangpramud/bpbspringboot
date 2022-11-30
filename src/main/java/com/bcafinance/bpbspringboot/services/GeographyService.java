@@ -52,13 +52,17 @@ public class GeographyService {
         return georepo.findByCity(city);
     }
 
-    public List<Geographies> searchByProvinceName(String province){
+    public List<Geographies> searchByProvinceNameEndsWith(String province){
         return georepo.findBySpNameEndsWith(province);
     }
 
-//    public  List<Geographies> searchByStateCountryName(String country){
-//        return georepo.searchByStateCountryName(country);
-//    }
+    public List<Geographies> searchByProvinceNameStartsWith(String province){
+        return georepo.findBySpNameStartsWith(province);
+    }
+
+    public  List<Geographies> searchByStateCountryName(String country){
+        return georepo.searchByScName(country);
+    }
 
     public List<Geographies> findByCityNotlike(String city){
         return georepo.findByCityNotLike(city);
@@ -86,31 +90,31 @@ public class GeographyService {
 
         geography.setModifiedBy("1");
         geography.setModifiedDate(new Date());
-
-        if (geo.getSpCode() !=null && geo.getSpCode().equals(""))
+        if (geo.getSpCode() !=null && !geo.getSpCode().equals(""))
         {
             FormatValidation.stateCodeValidation(geography.getSpCode());
             geography.setSpCode(geo.getSpCode());
         }
-        if (geo.getScCode() !=null && geo.getScCode().equals(""))
+        if (geo.getScCode() !=null && !geo.getScCode().equals(""))
         {
             FormatValidation.stateCodeValidation(geography.getScCode());
             geography.setScCode(geo.getScCode());
         }
 
-        if (geo.getSpName() !=null && geo.getSpName().equals(""))
+        if (geo.getSpName() !=null && !geo.getSpName().equals(""))
         {
             geography.setSpName(geo.getSpName());
         }
-        if (geo.getScName() !=null && geo.getScName().equals(""))
+        if (geo.getScName() !=null && !geo.getScName().equals(""))
         {
             geography.setScName(geo.getScName());
         }
-        if (geo.getCity() !=null && geo.getCity().equals(""))
+        if (geo.getCity() !=null && !geo.getCity().equals(""))
         {
             geography.setCity(geo.getCity());
         }
 
+//        georepo.save(geography);
     }
 
 

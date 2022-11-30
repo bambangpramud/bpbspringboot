@@ -92,11 +92,26 @@ public class GeographyController {
                 generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,"",null,null);
     }
 
-    @GetMapping("/v1/geography/province/{name}")
+    @GetMapping("/v1/geography/province/end/{name}")
     public ResponseEntity<Object> findGeographiesByProvinceNameEndsWith(@PathVariable("name") String name)throws Exception{
 
         int data = 0;
-        List<Geographies> lsGeographies = geoserv.searchByProvinceName(name);
+        List<Geographies> lsGeographies = geoserv.searchByProvinceNameEndsWith(name);
+
+        if(lsGeographies.size()==0)
+        {
+            throw new ResourceNotFoundException(ConstantMessage.WARNING_DATA_EMPTY);
+        }
+
+//        return null;
+        return new ResponseHandler().
+                generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
+    }
+    @GetMapping("/v1/geography/province/start/{name}")
+    public ResponseEntity<Object> findGeographiesByProvinceNameStartsWith(@PathVariable("name") String name)throws Exception{
+
+        int data = 0;
+        List<Geographies> lsGeographies = geoserv.searchByProvinceNameStartsWith(name);
 
         if(lsGeographies.size()==0)
         {
@@ -108,21 +123,21 @@ public class GeographyController {
                 generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
     }
 
-//    @GetMapping("/v1/geography/country/{name}")
-//    public ResponseEntity<Object> searchByStateCountryLike(@PathVariable("name") String name)throws Exception{
-//
-//        int data = 0;
-//        List<Geographies> lsGeographies = geoserv.searchByStateCountryName(name);
-//
-//        if(lsGeographies.size()==0)
-//        {
-//            throw new ResourceNotFoundException(ConstantMessage.WARNING_DATA_EMPTY);
-//        }
-//
-////        return null;
-//        return new ResponseHandler().
-//                generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
-//    }
+    @GetMapping("/v1/geography/country/{name}")
+    public ResponseEntity<Object> searchByStateCountryLike(@PathVariable("name") String name)throws Exception{
+
+        int data = 0;
+        List<Geographies> lsGeographies = geoserv.searchByStateCountryName(name);
+
+        if(lsGeographies.size()==0)
+        {
+            throw new ResourceNotFoundException(ConstantMessage.WARNING_DATA_EMPTY);
+        }
+
+//        return null;
+        return new ResponseHandler().
+                generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
+    }
 
     @GetMapping("/v1/geography/notlike/{city}")
     public ResponseEntity<Object> findGeographyByNotLikeCity(@PathVariable("city") String city)throws Exception{

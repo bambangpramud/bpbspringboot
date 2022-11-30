@@ -39,7 +39,8 @@ public class FormatValidation {
     }
 
     public static void stateCodeValidation(String stateCode) throws Exception{
-        if(stateCode.length() < 2 && stateCode.length() >4){
+        if(!(stateCode.length()>1&&stateCode.length()<5))
+        {
             throw new ResourceNotFoundException(ConstantMessage.WARNING_CODE_INVALID);
         }
     }
