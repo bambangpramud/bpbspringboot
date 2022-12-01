@@ -154,5 +154,19 @@ public class GeographyController {
                 generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
     }
 
+    @GetMapping("/v1/geography/like/{city}")
+    public ResponseEntity<Object> findGeographyByLikeCity(@PathVariable("city") String city)throws Exception{
+
+        int data = 0;
+        List<Geographies> lsGeographies = geoserv.findByCitylike(city);
+
+        if(lsGeographies.size()==0)
+        {
+            throw new ResourceNotFoundException(ConstantMessage.WARNING_DATA_EMPTY);
+        }
+
+        return new ResponseHandler().
+                generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsGeographies,null,null);
+    }
 
 }

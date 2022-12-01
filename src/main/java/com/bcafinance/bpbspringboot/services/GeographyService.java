@@ -65,7 +65,11 @@ public class GeographyService {
     }
 
     public List<Geographies> findByCityNotlike(String city){
-        return georepo.findByCityNotLike(city);
+        return georepo.findByCityNotContainsIgnoreCase(city);
+    }
+
+    public List<Geographies> findByCitylike(String city){
+        return georepo.findByCityContainsIgnoreCase(city);
     }
 
     public void saveGeography(Geographies geography) throws Exception{
@@ -78,6 +82,7 @@ public class GeographyService {
 
         FormatValidation.stateCodeValidation(geography.getScCode());
         FormatValidation.stateCodeValidation(geography.getSpCode());
+        FormatValidation.noRussiaValidation(geography.getScName());
 
         georepo.save(geography);
     }
@@ -107,6 +112,7 @@ public class GeographyService {
         }
         if (geo.getScName() !=null && !geo.getScName().equals(""))
         {
+            FormatValidation.noRussiaValidation(geography.getScName());
             geography.setScName(geo.getScName());
         }
         if (geo.getCity() !=null && !geo.getCity().equals(""))

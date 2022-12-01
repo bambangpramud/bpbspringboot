@@ -44,4 +44,11 @@ public class FormatValidation {
             throw new ResourceNotFoundException(ConstantMessage.WARNING_CODE_INVALID);
         }
     }
+
+    public static void noRussiaValidation(String stateName) throws Exception{
+        if(!(!stateName.contains("Russia")&&!stateName.contains("russia")))
+        {
+            throw new ResourceNotFoundException(ConstantMessage.WARNING_CODE_INVALID);
+        }
+    }
 }

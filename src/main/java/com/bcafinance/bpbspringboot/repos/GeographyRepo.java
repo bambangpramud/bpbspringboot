@@ -16,7 +16,9 @@ public interface GeographyRepo extends JpaRepository<Geographies,Long> {
 
     List<Geographies> findBySpNameStartsWith(String SpName);
 //List<Products> searchByNameStartsWith(String name);
-    List<Geographies> findByCityNotLike(String city);
+    List<Geographies> findByCityNotContainsIgnoreCase(String city);
+
+    List<Geographies> findByCityContainsIgnoreCase(String city);
 
     List<Geographies> searchByScName(@Param("StateCountryName") String StateCountryName);
 
