@@ -87,7 +87,9 @@ public class GeographyService {
         georepo.save(geography);
     }
 
-    @Transactional
+//    @Transactional(rollbackFor = {Exception.class})
+
+    @Transactional(rollbackFor = {Exception.class})
     public  void updateGeography(Geographies geo) throws Exception{
 
         Geographies geography = georepo.findById(geo.getId()).orElseThrow(()->
@@ -121,6 +123,11 @@ public class GeographyService {
         }
 
 //        georepo.save(geography);
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    public void saveAllGeography(List<Geographies> geos){
+        georepo.saveAll(geos);
     }
 
 

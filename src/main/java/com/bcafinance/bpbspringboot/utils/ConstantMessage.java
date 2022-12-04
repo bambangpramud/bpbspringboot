@@ -58,4 +58,11 @@ public class ConstantMessage {
 
     /*Employee*/
 
+    /*Discount*/
+    public final static String WARNING_USERNAME_MENDATORY = "USERNAME WAJIB DIISI";
+    public final static String WARNING_EMAIL_MENDATORY = "ALAMAT EMAIL WAJIB DIISI";
+    public final static String WARNING_DISCOUNT_EXIST = "DISCOUNT SUDAH TERDAFTAR";
+    public final static String WARNING_EMAIL_EXISTING = "ALAMAT EMAIL SUDAH TERDAFTAR";
+    public static final String SUCCESS_SEND_EMAIL = "EMAIL BERHASIL TERKIRIM";
+    public final static String EMAIL_VERIF_SUCCES = "EMAIL SUKSES TERVERIFIKASI";
 }

@@ -8,8 +8,8 @@ import org.bouncycastle.crypto.params.KeyParameter;
 import org.bouncycastle.util.encoders.Hex;
 
 public class Crypto {
-	private static String defaultKey = "aafd12f438cae99778b479e2089ddec2f06cb58faafd12f6";
-//aafd12f438cae52378b479e5076ddec2f06cb58faafd12f6
+    private static String defaultKey = "aafd12f438cae55226b480e2089ddec2f06cb58faafd12f6";
+    //aafd12f438cae52378b479e5076ddec2f06cb58faafd12f6
     public static String performEncrypt(String keyText, String plainText) {
         try{
             byte[] key = Hex.decode(keyText.getBytes());
@@ -52,10 +52,12 @@ public class Crypto {
 
         //08670f7a68b6dcc8af9653f8f5534c1b
         //6040b701559b331122a61b24199a9ae0
-        String x = new Crypto().performEncrypt("sa");
+        String x = new Crypto().performEncrypt("spkpqjhwcobuoylp");
+        String a = new Crypto().performEncrypt("sa");
         System.out.println(x);
-        
-//        x = new Crypto().performDecrypt("6040b701559b331122a61b24199a9ae0");
-//        System.out.println(x);
+        System.out.println(a);
+
+        // x = new Crypto().performDecrypt("10f4acdda31c9bb95d198fc67580f82e0be3a4803d74b48aa385dd516c8cc6b7");
+        // System.out.println(x);
     }
 }

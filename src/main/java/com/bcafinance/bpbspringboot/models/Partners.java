@@ -2,55 +2,53 @@
 @Author Bambang a.k.a. Bambang
 calon menantu idaman
 created with Eclipse intellij 2022.2.3
-Created on 11/30/2022  1:45 PM
-Last Modified on 11/30/20221:45 PM
+Created on 12/2/2022  2:06 PM
+Last Modified on 12/2/20222:06 PM
 Version 1.0
 */
 
 
 package com.bcafinance.bpbspringboot.models;
 
+
 import com.bcafinance.bpbspringboot.utils.ConstantMessage;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "MstGeography")
-public class Geographies {
+@Table(name = "MstPartners")
+public class Partners {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "GeographyId")
+    @Column(name = "PartnersId")
     private Long id;
 
     @NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
 //    @Column(name = "City",length = 50,nullable = false,unique = true)
-    @Column(name = "City",length = 50,unique = true)
-    private String city;
+    @Column(name = "Name",length = 50,unique = true)
+    private String name;
 
-//    @Column(name = "StateProvinceCode",length = 10,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateProvinceCode",length = 10)
-    private String spCode;
+    @NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
+    @Column(name = "Email",length = 50 ,unique = true)
+    private String email;
 
-//    @Column(name = "StateProvinceName",length = 50,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateProvinceName",length = 50)
-    private String spName;
+    @NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
+    @Column(name = "PhoneNumber", length = 16, unique = true)
+    private String phoneNumber;
 
-//    @Column(name = "StateCountryCode",length = 10,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateCountryCode",length = 10)
-    private String scCode;
-
-//    @Column(name = "StateCountryName",length = 50,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateCountryName",length = 50)
-    private String scName;
+    @ManyToMany(mappedBy = "partners")
+    @JsonBackReference
+    private Set<Seller> seller = new HashSet<Seller>();
 
     @Column(name = "CreatedBy",nullable = false)
     private String createdBy = "1";
@@ -67,6 +65,7 @@ public class Geographies {
     @Column(name = "IsActive",nullable = false)
     private boolean isActive = true;
 
-    public Geographies() {
+    public Partners(){
+
     }
 }

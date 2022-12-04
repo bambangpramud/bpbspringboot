@@ -22,4 +22,5 @@ public interface GeographyRepo extends JpaRepository<Geographies,Long> {
 
     List<Geographies> searchByScName(@Param("StateCountryName") String StateCountryName);
 
+
 }

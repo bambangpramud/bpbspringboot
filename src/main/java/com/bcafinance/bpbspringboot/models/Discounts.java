@@ -2,55 +2,60 @@
 @Author Bambang a.k.a. Bambang
 calon menantu idaman
 created with Eclipse intellij 2022.2.3
-Created on 11/30/2022  1:45 PM
-Last Modified on 11/30/20221:45 PM
+Created on 12/2/2022  9:38 AM
+Last Modified on 12/2/20229:38 AM
 Version 1.0
 */
 
 
 package com.bcafinance.bpbspringboot.models;
 
+
 import com.bcafinance.bpbspringboot.utils.ConstantMessage;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "MstGeography")
-public class Geographies {
+@Table(name = "MstDiscounts")
+public class Discounts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "GeographyId")
+    @Column(name = "DiscountsId")
     private Long id;
 
     @NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
 //    @Column(name = "City",length = 50,nullable = false,unique = true)
-    @Column(name = "City",length = 50,unique = true)
-    private String city;
+    @Column(name = "Name",length = 50,unique = true)
+    private String name;
 
-//    @Column(name = "StateProvinceCode",length = 10,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateProvinceCode",length = 10)
-    private String spCode;
+    //    @Column(name = "StateProvinceCode",length = 10,nullable = false)
+    @NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
+    @Column(name = "Description",length = 225)
+    private String description;
 
-//    @Column(name = "StateProvinceName",length = 50,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateProvinceName",length = 50)
-    private String spName;
+    //    @Column(name = "StateProvinceName",length = 50,nullable = false)
+    @NotNull(message = ConstantMessage.WARNING_DATA_EMPTY)
+//    @Column(name = "City",length = 50,nullable = false,unique = true)
+    @Column(name = "StartDate")
+    private LocalDate startDate;
 
-//    @Column(name = "StateCountryCode",length = 10,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateCountryCode",length = 10)
-    private String scCode;
+    @NotNull(message = ConstantMessage.WARNING_DATA_EMPTY)
+//    @Column(name = "City",length = 50,nullable = false,unique = true)
+    @Column(name = "EndDate")
+    private LocalDate endDate;
 
-//    @Column(name = "StateCountryName",length = 50,nullable = false)
-@NotEmpty(message = ConstantMessage.WARNING_DATA_EMPTY)
-    @Column(name = "StateCountryName",length = 50)
-    private String scName;
+    @Column(name = "Limit")
+    private Integer limit;
+
+    @Column(name = "Cut")
+    private Float cut;
 
     @Column(name = "CreatedBy",nullable = false)
     private String createdBy = "1";
@@ -66,7 +71,4 @@ public class Geographies {
 
     @Column(name = "IsActive",nullable = false)
     private boolean isActive = true;
-
-    public Geographies() {
-    }
 }
