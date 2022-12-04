@@ -52,12 +52,12 @@ public class Crypto {
 
         //08670f7a68b6dcc8af9653f8f5534c1b
         //6040b701559b331122a61b24199a9ae0
-        String x = new Crypto().performEncrypt("spkpqjhwcobuoylp");
+        String x = new Crypto().performEncrypt("");
         String a = new Crypto().performEncrypt("sa");
         System.out.println(x);
         System.out.println(a);
 
-        // x = new Crypto().performDecrypt("10f4acdda31c9bb95d198fc67580f82e0be3a4803d74b48aa385dd516c8cc6b7");
+        // x = new Crypto().performDecrypt("");
         // System.out.println(x);
     }
 }
