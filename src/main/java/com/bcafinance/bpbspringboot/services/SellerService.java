@@ -13,6 +13,7 @@ package com.bcafinance.bpbspringboot.services;
 
 import com.bcafinance.bpbspringboot.handler.FormatValidation;
 import com.bcafinance.bpbspringboot.handler.ResourceNotFoundException;
+import com.bcafinance.bpbspringboot.models.Partners;
 import com.bcafinance.bpbspringboot.models.Seller;
 import com.bcafinance.bpbspringboot.repos.SellerRepo;
 import com.bcafinance.bpbspringboot.utils.ConstantMessage;
@@ -132,6 +133,13 @@ public class SellerService {
             seller.setBirthDate(c.getBirthDate());
         }
     }
+    public void addPartners(Partners partners, Long sellerId) throws Exception {
+        Seller seller = selrepo.findById(sellerId).
+                orElseThrow(() -> new ResourceNotFoundException(ConstantMessage.WARNING_PRODUCT_NOT_FOUND));
+        seller.getPartners().add(partners);
+        saveSellers(seller);
+    }
+
 
     @Transactional(rollbackFor = {Exception.class})
     public void saveAllSeller(List<Seller> sellers){

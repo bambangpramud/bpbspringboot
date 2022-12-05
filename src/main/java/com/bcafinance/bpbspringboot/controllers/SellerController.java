@@ -9,13 +9,10 @@ Version 1.0
 
 
 package com.bcafinance.bpbspringboot.controllers;
-
-import com.bcafinance.bpbspringboot.dto.DiscountsCustomerDTO;
-import com.bcafinance.bpbspringboot.dto.GeographyDTO;
 import com.bcafinance.bpbspringboot.dto.SellerDTO;
 import com.bcafinance.bpbspringboot.handler.ResourceNotFoundException;
 import com.bcafinance.bpbspringboot.handler.ResponseHandler;
-import com.bcafinance.bpbspringboot.models.Geographies;
+import com.bcafinance.bpbspringboot.models.Partners;
 import com.bcafinance.bpbspringboot.models.Seller;
 import com.bcafinance.bpbspringboot.services.SellerService;
 import com.bcafinance.bpbspringboot.utils.ConstantMessage;
@@ -112,6 +109,11 @@ public class SellerController {
 
         return new ResponseHandler().
                 generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsSellerDTO,null,null);
+    }
+
+    @PostMapping("/v1/seller/par/{id}")
+    public void addPartner(@RequestBody Partners partners, @PathVariable("id") Long sellerId) throws Exception {
+        selserv.addPartners(partners,sellerId);
     }
 
 

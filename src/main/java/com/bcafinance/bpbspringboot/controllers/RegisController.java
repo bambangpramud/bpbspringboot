@@ -69,7 +69,7 @@ public class RegisController {
         System.out.println(sc.sendMailWithAttachment(strArr,
                 "EMAIL AUTHENTICATION","TOKEN REGISTRATION : "+"http://localhost:8080/api/v1/a/"+token,
                 "SSL",
-                new String[] {ResourceUtils.getFile("classpath:\\data\\sample.docx").getAbsolutePath()}));
+               null));
 
 
         return new ResponseHandler().generateResponse(ConstantMessage.SUCCESS_SEND_EMAIL, HttpStatus.CREATED,null,null,null);

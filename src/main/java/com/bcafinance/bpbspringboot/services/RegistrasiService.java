@@ -13,7 +13,6 @@ package com.bcafinance.bpbspringboot.services;
 
 import com.bcafinance.bpbspringboot.handler.ResourceNotFoundException;
 import com.bcafinance.bpbspringboot.models.Registrasi;
-import com.bcafinance.bpbspringboot.repos.RegisTokenRepo;
 import com.bcafinance.bpbspringboot.repos.RegistrasiRepo;
 import com.bcafinance.bpbspringboot.utils.ConstantMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,8 +29,6 @@ public class RegistrasiService {
     @Autowired
     private RegistrasiRepo regirepo;
 
-    @Autowired
-    private RegisTokenRepo tokenRepo;
 
 //    @Autowired
 //    EmailService(EmailRepo emailRepo){this.emailRepo = emailRepo;}

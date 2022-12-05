@@ -83,7 +83,7 @@ public class PartnersController {
                 generateResponse(ConstantMessage.SUCCESS_FIND_BY,HttpStatus.OK,lsPartnersDTO,null,null);
     }
 
-    @GetMapping("/v1/partner/{id}")
+    @GetMapping("/v1/partners/{id}")
     public ResponseEntity<Object> getSellerById(@PathVariable("id") long id) throws Exception {
         Partners partners = partnersService.findById(id);
 
@@ -99,7 +99,7 @@ public class PartnersController {
             throw new ResourceNotFoundException(ConstantMessage.WARNING_NOT_FOUND);
         }
     }
-    @GetMapping("/v1/partner/email/{email}")
+    @GetMapping("/v1/partners/email/{email}")
     public ResponseEntity<Object> getPartnerByEmail(@PathVariable("email") String email) throws Exception {
         Partners partners = partnersService.findByEmailLike(email);
 
@@ -116,7 +116,7 @@ public class PartnersController {
         }
     }
 
-    @PutMapping("/v1/partner/upd")
+    @PutMapping("/v1/partners/upd")
     public ResponseEntity<Object> updateSellerById(@RequestBody Partners partners)throws Exception{
         partnersService.updatePartners(partners);
         return new ResponseHandler().
